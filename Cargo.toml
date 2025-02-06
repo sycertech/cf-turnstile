@@ -18,10 +18,10 @@ hyper-util = { default-features = false, features = ["client-legacy", "http1", "
 hyper-rustls = { default-features = false, optional = true, features = ["http1", "http2", "ring"], version = "0.27.3" }
 hyper-tls = { default-features = false, optional = true, features = ["alpn"], version = "0.6" }
 hyper-hickory = { default-features = false, optional = true, version = "0.7" }
-secrecy = "0.8.0"
+secrecy = "0.10.3"
 serde = { default-features = false, features = ["derive"], version = "1" }
 serde_json = { default-features = false, features = ["std"], version = "1" }
-thiserror = "1"
+thiserror = "2"
 uuid = { version = "1", features = ["v4", "serde"], optional = true }
 
 [features]
