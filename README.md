@@ -21,16 +21,16 @@ assert!(validated.success);
 
 ### Idempotency
 
-To utilize Turnstile's [`indempotency_key`](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#:~:text=A%20response%20may,for%20that%20response.) feature, you can enable the `idempotency` feature flag.  
+To utilize Turnstile's [`idempotency_key`](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/#:~:text=A%20response%20may,for%20that%20response.) feature, you can enable the `idempotency` feature flag.  
 
-This will enable the `idempotency_key` field on the [`SiteVerifyRequest`](struct.SiteVerifyRequest.html) struct and the [`generate_indepotency_key`](fn.generate_indepotency_key.html) function.
+This will enable the `idempotency_key` field on the [`SiteVerifyRequest`](struct.SiteVerifyRequest.html) struct and the [`generate_idempotency_key`](fn.generate_idempotency_key.html) function.
 
 ### TLS
 
 **Note**: not enabling any TLS feature is supported for use behind a proxy;
 Turnstile's API is HTTPS only.
 
-**Note**: this TLS code was taken from [twilight-http](https://github.com/twilight-rs/twilight/tree/main/twilight-http) in accodance with its license.
+**Note**: this TLS code was taken from [twilight-http](https://github.com/twilight-rs/twilight/tree/main/twilight-http) in accordance with its license.
 
 `cf-turnstile` has features to enable HTTPS connectivity with [`hyper`]. These
 features are mutually exclusive. `rustls-native-roots` is enabled by default.
