@@ -65,13 +65,13 @@ async fn test_token_already_spent() -> Result<()> {
 #[cfg(feature = "integration")]
 #[tokio::test]
 async fn test_integration() -> Result<()> {
-    use crate::generate_indepotency_key;
+    use crate::generate_idempotency_key;
     use std::env::var;
 
     let secret_key = var("TURNSTILE_SECRET_KEY").expect("TURNSTILE_SECRET_KEY not set");
     let response = var("TURNSTILE_RESPONSE").expect("TURNSTILE_RESPONSE not set");
     let hostname = var("TURNSTILE_HOSTNAME").expect("TURNSTILE_HOSTNAME not set");
-    let idempotency_key = generate_indepotency_key();
+    let idempotency_key = generate_idempotency_key();
 
     let client = TurnstileClient::new(secret_key.into());
 
