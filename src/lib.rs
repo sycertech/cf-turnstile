@@ -145,3 +145,22 @@ impl TurnstileClient {
 pub fn generate_indepotency_key() -> Option<uuid::Uuid> {
     Some(uuid::Uuid::new_v4())
 }
+
+// Some features are mutually exclusive. This is documented in the readme, but also gives a compile-time error
+#[cfg(all(feature = "native-tls", feature = "rustls-native-roots"))]
+compile_error!(
+    r#"The features "native-tls" and "rustls-native-roots" are mutually exclusive. Please enable only one TLS backend.
+If you're enabling "native-tls", make sure to set `default-features = false` to disable the default "rustls-native-roots" feature."#
+);
+
+#[cfg(all(feature = "native-tls", feature = "rustls-webpki-roots"))]
+compile_error!(
+    r#"The features "native-tls" and "rustls-webpki-roots" are mutually exclusive. Please enable only one TLS backend.
+If you're enabling "native-tls", make sure to set `default-features = false` to disable the default "rustls-native-roots" feature."#
+);
+
+#[cfg(all(feature = "rustls-native-roots", feature = "rustls-webpki-roots"))]
+compile_error!(
+    r#"The features "rustls-native-roots" and "rustls-webpki-roots" are mutually exclusive. Please enable only one TLS backend.
+If you're enabling "native-tls", make sure to set `default-features = false` to disable the default "rustls-native-roots" feature."#
+);
