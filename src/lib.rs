@@ -8,7 +8,7 @@ use hyper::{
     Method, Request,
 };
 use hyper_util::{client::legacy::Client as HyperClient, rt::TokioExecutor};
-use secrecy::{ExposeSecret, Secret};
+use secrecy::{ExposeSecret, SecretString};
 use serde::{Deserialize, Serialize};
 
 mod connector;
@@ -19,7 +19,7 @@ mod test;
 
 /// A client for the Cloudflare Turnstile API.
 pub struct TurnstileClient {
-    secret: Secret<String>,
+    secret: SecretString,
     http: HyperClient<Connector, Full<Bytes>>,
 }
 
@@ -92,7 +92,7 @@ const TURNSTILE_USER_AGENT: &str = concat!(
 
 impl TurnstileClient {
     /// Create a new Turnstile client.
-    pub fn new(secret: Secret<String>) -> Self {
+    pub fn new(secret: SecretString) -> Self {
         let connector = connector::create();
         let http =
             hyper_util::client::legacy::Client::builder(TokioExecutor::new()).build(connector);
@@ -108,11 +108,11 @@ impl TurnstileClient {
         // if request secret is none, set it:
         let request = if request.secret.is_none() {
             SiteVerifyRequest {
-                secret: Some(self.secret.expose_secret().clone()),
+                secret: Some(self.secret.expose_secret().to_string()),
                 ..request
             }
         } else {
-            request.clone()
+            request
         };
 
         let body = Full::new(Bytes::from(serde_json::to_string(&request)?));
