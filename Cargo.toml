@@ -25,12 +25,12 @@ thiserror = "2"
 uuid = { version = "1", features = ["v4", "serde"], optional = true }
 
 [features]
-default = ["rustls-native-roots"]
+default = ["rustls-native-roots", "hickory"]
 idempotency = ["dep:uuid"]
 native-tls = ["dep:hyper-tls"]
 rustls-native-roots = ["dep:hyper-rustls", "hyper-rustls?/native-tokio"]
 rustls-webpki-roots = ["dep:hyper-rustls", "hyper-rustls?/webpki-tokio"]
-hickory = ["dep:hyper-hickory"]
+hickory = ["dep:hyper-hickory", "hyper-hickory?/tokio"]
 integration = ["idempotency"]
 
 [dev-dependencies]
