@@ -14,10 +14,10 @@ license = "MIT"
 [dependencies]
 http-body-util = { default-features = false, version = "0.1" }
 hyper = { default-features = false, version = "1" }
-hyper-util = { default-features = false, features = ["client-legacy", "http1", "http2", "tokio"], version = "0.1.2" }
-hyper-rustls = { default-features = false, optional = true, features = ["http1", "http2", "ring"], version = "0.27.3" }
+hyper-util = { default-features = false, features = ["client-legacy", "http1", "http2", "tokio"], version = "0.1.19" }
+hyper-rustls = { default-features = false, optional = true, features = ["http1", "http2", "ring"], version = "0.27.7" }
 hyper-tls = { default-features = false, optional = true, features = ["alpn"], version = "0.6" }
-hyper-hickory = { default-features = false, optional = true, version = "0.7" }
+hyper-hickory = { default-features = false, optional = true, version = "0.8.0" }
 secrecy = "0.10.3"
 serde = { default-features = false, features = ["derive"], version = "1" }
 serde_json = { default-features = false, features = ["std"], version = "1" }
